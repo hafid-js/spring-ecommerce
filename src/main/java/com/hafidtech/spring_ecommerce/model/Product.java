@@ -1,6 +1,7 @@
 package com.hafidtech.spring_ecommerce.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 public class Product {
 
     @Id
@@ -44,8 +46,8 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> ratings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "num_ratings")
     private int numRatings;
@@ -57,4 +59,22 @@ public class Product {
     private LocalDateTime createdAt;
 
 
+    public Product(Long id, String title, String description, int price, int discountedPrice, int discountPercent, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings,int numRatings, Category category, LocalDateTime createdAt) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.discountedPrice = discountedPrice;
+        this.discountPercent = discountPercent;
+        this.quantity = quantity;
+        this.brand = brand;
+        this.color = color;
+        this.sizes = sizes;
+        this.imageUrl = imageUrl;
+        this.ratings = ratings;
+//        this.reviews = reviews;
+        this.numRatings = numRatings;
+        this.category = category;
+        this.createdAt = createdAt;
+    }
 }

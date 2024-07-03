@@ -2,12 +2,14 @@ package com.hafidtech.spring_ecommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class User {
 
     @Id
@@ -38,13 +40,25 @@ public class User {
     @JsonIgnore
     private List<Rating> ratings = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
     private LocalDateTime createdAt;
 
+
     public User() {
-
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.mobile = mobile;
+        this.address = address;
+        this.paymentInformation = paymentInformation;
+        this.ratings = ratings;
+        this.reviews = reviews;
+        this.createdAt = createdAt;
     }
-
-
 }
