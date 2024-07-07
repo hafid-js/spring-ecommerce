@@ -1,7 +1,19 @@
 package com.hafidtech.spring_ecommerce.repository;
 
+import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.CartItem;
+import com.hafidtech.spring_ecommerce.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-public class CartItemRepository extends JpaRepository<CartItem, Long> {
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
+
+    @Query("SELECT ci FROM CartItem ci WHERE ci.cart=:cart AND ci.product AND ci.size AND ci.userId=:userId")
+    public CartItem isCartItemExist(@Param("cart")Cart cart,
+                                    @Param("product")Product product,
+                                    @Param("size") String size,
+                                    @Param("userId") Long userId);
+
+
 }

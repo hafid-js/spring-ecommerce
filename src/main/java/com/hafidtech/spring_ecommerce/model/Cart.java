@@ -27,6 +27,8 @@ public class Cart {
 
     private int totalDiscountedPrice;
 
+    private int totalItem;
+
     private int discount;
 
     public Cart() {
