@@ -24,7 +24,7 @@ public class Category {
 
     private int level;
 
-    public Category(Long id, String name, Category parentCategory, int level) {
+    public Category() {
         this.id = id;
         this.name = name;
         this.parentCategory = parentCategory;

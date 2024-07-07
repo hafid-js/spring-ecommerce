@@ -59,7 +59,7 @@ public class Product {
     private LocalDateTime createdAt;
 
 
-    public Product(Long id, String title, String description, int price, int discountedPrice, int discountPercent, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings,int numRatings, Category category, LocalDateTime createdAt) {
+    public Product() {
         this.id = id;
         this.title = title;
         this.description = description;

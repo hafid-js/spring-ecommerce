@@ -1,10 +1,12 @@
 package com.hafidtech.spring_ecommerce.request;
 
 import com.hafidtech.spring_ecommerce.model.Size;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 public class CreateProductRequest {
 
     private String title;
@@ -19,6 +21,8 @@ public class CreateProductRequest {
     private String imageUrl;
 
     private String topLevelCategory;
+    private String secondLevelCategory;
+    private String thirdLevelCategory;
 
 
 }
