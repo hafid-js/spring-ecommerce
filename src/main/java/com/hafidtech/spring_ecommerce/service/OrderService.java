@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface OrderService {
 
     public OrderService createOrder(User user, Address shippingAddress);

@@ -28,7 +28,7 @@ public class Review {
     private LocalDateTime createdAt;
 
 
-    public Review(Long id, String review, Product product, User user, LocalDateTime createdAt) {
+    public Review() {
         super();
         this.id = id;
         this.review = review;

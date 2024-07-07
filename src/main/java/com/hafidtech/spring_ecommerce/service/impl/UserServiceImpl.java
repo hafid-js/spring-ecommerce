@@ -5,9 +5,11 @@ import com.hafidtech.spring_ecommerce.exception.UserException;
 import com.hafidtech.spring_ecommerce.model.User;
 import com.hafidtech.spring_ecommerce.repository.UserRepository;
 import com.hafidtech.spring_ecommerce.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;

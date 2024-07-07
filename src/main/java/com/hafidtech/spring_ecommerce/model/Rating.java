@@ -29,7 +29,7 @@ public class Rating {
     private LocalDateTime createdAt;
 
 
-    public Rating(Long id, User user, Product product, double rating, LocalDateTime createdAt) {
+    public Rating() {
         this.id = id;
         this.user = user;
         this.product = product;
