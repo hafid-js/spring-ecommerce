@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+//@Table(name = "order_item")
 public class OrderItem {
 
     @Id
@@ -34,7 +35,4 @@ public class OrderItem {
 
     private LocalDateTime deliveryDate;
 
-    public OrderItem() {
-
-    }
 }

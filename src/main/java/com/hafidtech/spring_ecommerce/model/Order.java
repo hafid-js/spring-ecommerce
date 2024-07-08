@@ -9,10 +9,11 @@ import java.util.List;
 
 @Entity
 @Data
+//@Table(name = "order")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "order_id")
@@ -45,8 +46,4 @@ public class Order {
     private int totalItem;
 
     private LocalDateTime createdAt;
-
-    public Order() {
-
-    }
 }

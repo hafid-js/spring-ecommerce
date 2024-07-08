@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Data
+//@Table(name = "cart")
 public class Cart {
 
     @Id
@@ -25,9 +26,10 @@ public class Cart {
     @Column(name = "total_price")
     private double totalPrice;
 
-    private int totalDiscountedPrice;
-
+    @Column(name = "total_item")
     private int totalItem;
+
+    private int totalDiscountedPrice;
 
     private int discount;
 

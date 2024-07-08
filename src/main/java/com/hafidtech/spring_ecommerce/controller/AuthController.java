@@ -2,10 +2,12 @@ package com.hafidtech.spring_ecommerce.controller;
 
 import com.hafidtech.spring_ecommerce.config.JwtProvider;
 import com.hafidtech.spring_ecommerce.exception.UserException;
+import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.User;
 import com.hafidtech.spring_ecommerce.repository.UserRepository;
 import com.hafidtech.spring_ecommerce.request.LoginRequest;
 import com.hafidtech.spring_ecommerce.response.AuthResponse;
+import com.hafidtech.spring_ecommerce.service.CartService;
 import com.hafidtech.spring_ecommerce.service.impl.CustomerUserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,7 @@ public class AuthController {
     private JwtProvider jwtProvider;
     private PasswordEncoder passwordEncoder;
     private CustomerUserServiceImpl customerUserService;
+    private CartService cartService;
 
     public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomerUserServiceImpl customerUserService) {
         this.userRepository = userRepository;
@@ -57,6 +60,7 @@ public class AuthController {
         createdUser.setLastName(lastName);
 
         User savedUser = userRepository.save(createdUser);
+        Cart cart = cartService.createCart(createdUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);

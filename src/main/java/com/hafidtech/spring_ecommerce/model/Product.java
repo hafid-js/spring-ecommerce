@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Data
+//@Table(name = "product")
 public class Product {
 
     @Id

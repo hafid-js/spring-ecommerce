@@ -1,5 +1,6 @@
 package com.hafidtech.spring_ecommerce.model;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 
 @Data

@@ -58,4 +58,9 @@ public class OderServiceImpl implements OrderService {
     public Order canceledOrder(Long orderId) throws OrderException {
         return null;
     }
+
+    @Override
+    public String deleteOrder(Long orderId) throws OrderException {
+        return null;
+    }
 }

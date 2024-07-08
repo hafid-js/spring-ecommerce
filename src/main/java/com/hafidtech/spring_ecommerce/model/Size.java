@@ -7,6 +7,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
+//@Table(name = "size")
 public class Size {
 
     private String name;
