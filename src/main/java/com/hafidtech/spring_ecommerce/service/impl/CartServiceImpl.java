@@ -5,18 +5,27 @@ import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.CartItem;
 import com.hafidtech.spring_ecommerce.model.Product;
 import com.hafidtech.spring_ecommerce.model.User;
+import com.hafidtech.spring_ecommerce.repository.CartItemRepository;
 import com.hafidtech.spring_ecommerce.repository.CartRepository;
 import com.hafidtech.spring_ecommerce.request.AddItemRequest;
 import com.hafidtech.spring_ecommerce.service.CartItemService;
 import com.hafidtech.spring_ecommerce.service.CartService;
 import com.hafidtech.spring_ecommerce.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CartServiceImpl implements CartService {
 
+    @Autowired
     private CartRepository cartRepository;
+
+
+    @Autowired
+    private CartItemRepository cartItemRepository;
+    @Autowired
     private CartItemService cartItemService;
+    @Autowired
     private ProductService productService;
 
     @Override
@@ -54,22 +63,28 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart findUserCart(Long userId) {
         Cart cart = cartRepository.findByUserId(userId);
+//        CartItem cartItems = cartRepository.findCartItemByUserId(userId);
 
         int totalPrice = 0;
         int totalDiscountPrice = 0;
         int totalItem = 0;
 
-        for (CartItem cartItem : cart.getCartItems()) {
+        for (CartItem cartItem :cart.getCartItems()) {
             totalPrice = totalPrice+cartItem.getPrice();
             totalDiscountPrice = totalDiscountPrice+cartItem.getDiscountedPrice();
             totalItem = totalItem+cartItem.getQuantity();
         }
+//
+//            totalPrice = totalPrice+cartItems.getPrice();
+//            totalDiscountPrice = totalDiscountPrice+cartItems.getDiscountedPrice();
+//            totalItem = totalItem+cartItems.getQuantity();
 
         cart.setTotalDiscountedPrice(totalDiscountPrice);
         cart.setTotalItem(totalItem);
         cart.setTotalPrice(totalPrice);
         cart.setDiscount(totalPrice-totalDiscountPrice);
 
+//        System.out.println(cartItems);
         return cartRepository.save(cart);
     }
 }

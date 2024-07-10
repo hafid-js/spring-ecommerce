@@ -8,6 +8,7 @@ import com.hafidtech.spring_ecommerce.repository.ProductRepository;
 import com.hafidtech.spring_ecommerce.request.CreateProductRequest;
 import com.hafidtech.spring_ecommerce.service.ProductService;
 import com.hafidtech.spring_ecommerce.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -22,8 +23,13 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
     private UserService userService;
+
+    @Autowired
     private CategoryRepository categoryRepository;
 
     @Override

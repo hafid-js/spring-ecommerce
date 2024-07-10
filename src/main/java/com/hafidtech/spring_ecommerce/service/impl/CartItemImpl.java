@@ -10,6 +10,7 @@ import com.hafidtech.spring_ecommerce.repository.CartItemRepository;
 import com.hafidtech.spring_ecommerce.repository.CartRepository;
 import com.hafidtech.spring_ecommerce.service.CartItemService;
 import com.hafidtech.spring_ecommerce.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,10 +18,13 @@ import java.util.Optional;
 @Service
 public class CartItemImpl implements CartItemService {
 
+    @Autowired
     private CartItemRepository cartItemRepository;
 
+    @Autowired
     private UserService userService;
 
+    @Autowired
     private CartRepository cartRepository;
 
     @Override

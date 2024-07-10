@@ -8,7 +8,6 @@ import java.util.Set;
 
 @Entity
 @Data
-//@Table(name = "cart")
 public class Cart {
 
     @Id
@@ -32,8 +31,4 @@ public class Cart {
     private int totalDiscountedPrice;
 
     private int discount;
-
-    public Cart() {
-
-    }
 }

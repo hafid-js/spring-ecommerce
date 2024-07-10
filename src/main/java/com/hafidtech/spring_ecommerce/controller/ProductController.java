@@ -4,6 +4,7 @@ import com.hafidtech.spring_ecommerce.exception.ProductException;
 import com.hafidtech.spring_ecommerce.model.Product;
 import com.hafidtech.spring_ecommerce.service.ProductService;
 import com.hafidtech.spring_ecommerce.service.impl.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
 
+    @Autowired
     private ProductService productService;
 
     @GetMapping("/products")
@@ -51,7 +53,7 @@ public class ProductController {
 
         Product product = productService.findProductById(productId);
 
-        return new ResponseEntity<Product>(product, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
 
     }
 }

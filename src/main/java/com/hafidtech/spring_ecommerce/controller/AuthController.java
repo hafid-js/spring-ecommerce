@@ -9,6 +9,8 @@ import com.hafidtech.spring_ecommerce.request.LoginRequest;
 import com.hafidtech.spring_ecommerce.response.AuthResponse;
 import com.hafidtech.spring_ecommerce.service.CartService;
 import com.hafidtech.spring_ecommerce.service.impl.CustomerUserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,22 +24,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private JwtProvider jwtProvider;
-    private PasswordEncoder passwordEncoder;
-    private CustomerUserServiceImpl customerUserService;
-    private CartService cartService;
 
-    public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomerUserServiceImpl customerUserService) {
-        this.userRepository = userRepository;
-        this.jwtProvider = jwtProvider;
-        this.passwordEncoder = passwordEncoder;
-        this.customerUserService = customerUserService;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CustomerUserServiceImpl customerUserService;
+
+    @Autowired
+    private CartService cartService;
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException {
@@ -58,6 +63,7 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
+        createdUser.getCreatedAt();
 
         User savedUser = userRepository.save(createdUser);
         Cart cart = cartService.createCart(createdUser);

@@ -30,15 +30,17 @@ public class Product {
     @Column(name = "discount_percent")
     private int discountPercent;
 
+    @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "brand")
     private String brand;
 
+    @Column(name = "color")
     private String color;
 
     @Embedded
     @ElementCollection
-    @Column(name = "sizes")
     private Set<Size> sizes = new HashSet<>();
 
     @Column(name = "image_url")
@@ -47,8 +49,8 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> ratings = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Review> reviews = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "num_ratings")
     private int numRatings;
@@ -73,7 +75,7 @@ public class Product {
         this.sizes = sizes;
         this.imageUrl = imageUrl;
         this.ratings = ratings;
-//        this.reviews = reviews;
+        this.reviews = reviews;
         this.numRatings = numRatings;
         this.category = category;
         this.createdAt = createdAt;

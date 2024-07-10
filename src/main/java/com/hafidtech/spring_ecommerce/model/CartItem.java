@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Entity
 @Data
-//@Table(name = "cart_item")
 public class CartItem {
 
     @Id
@@ -29,8 +28,4 @@ public class CartItem {
     private Integer discountedPrice;
 
     private Long userId;
-
-    public CartItem() {
-
-    }
 }

@@ -7,14 +7,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-//@Table(name = "size")
 public class Size {
 
     private String name;
     private int quantity;
-
-    public Size(String name, int quantity) {
-        this.name = name;
-        this.quantity = quantity;
-    }
 }

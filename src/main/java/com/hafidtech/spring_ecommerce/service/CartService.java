@@ -4,6 +4,7 @@ import com.hafidtech.spring_ecommerce.exception.ProductException;
 import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.User;
 import com.hafidtech.spring_ecommerce.request.AddItemRequest;
+import org.springframework.data.jpa.repository.Query;
 
 public interface CartService {
 
