@@ -9,11 +9,11 @@ import java.util.List;
 
 @Entity
 @Data
-//@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "order_id")

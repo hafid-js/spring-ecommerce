@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-//@Table(name = "user")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -38,11 +38,9 @@ public class User {
     private List<PaymentInformation> paymentInformation = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Rating> ratings = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
     private LocalDateTime createdAt;
