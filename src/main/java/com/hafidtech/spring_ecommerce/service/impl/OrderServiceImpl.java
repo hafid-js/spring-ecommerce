@@ -1,5 +1,7 @@
 package com.hafidtech.spring_ecommerce.service.impl;
 
+import com.hafidtech.spring_ecommerce.exception.CartException;
+import com.hafidtech.spring_ecommerce.exception.CartItemException;
 import com.hafidtech.spring_ecommerce.exception.OrderException;
 import com.hafidtech.spring_ecommerce.model.*;
 import com.hafidtech.spring_ecommerce.repository.*;
@@ -33,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
     private UserRepository userRepository;
 
     @Override
-    public Order createOrder(User user, Address shippingAddress) {
+    public Order createOrder(User user, Address shippingAddress) throws CartException {
         shippingAddress.setUser(user);
         Address address = addressRepository.save(shippingAddress);
         user.getAddress().add(address);
@@ -53,8 +55,7 @@ public class OrderServiceImpl implements OrderService {
             orderItem.setDiscountedPrice(item.getDiscountedPrice());
 
             OrderItem createdOrderItem = orderItemRepository.save(orderItem);
-
-            orderItems.add(createdOrderItem);
+                orderItems.add(createdOrderItem);
         }
 
         Order createdOrder = new Order();
@@ -73,12 +74,20 @@ public class OrderServiceImpl implements OrderService {
 
         Order savedOrder = orderRepository.save(createdOrder);
 
+        Cart resetCart = new Cart();
+        resetCart.setDiscount(0);
+        resetCart.setTotalDiscountedPrice(0);
+        resetCart.setTotalItem(0);
+        resetCart.setTotalPrice(0);
+        resetCart.setUser(cart.getUser());
+
+        cartRepository.save(resetCart);
+
         for (OrderItem item:orderItems) {
             item.setOrder(savedOrder);
             orderItemRepository.save(item);
         }
-
-        return savedOrder;
+            return savedOrder;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.hafidtech.spring_ecommerce.service;
 
+import com.hafidtech.spring_ecommerce.exception.CartException;
 import com.hafidtech.spring_ecommerce.exception.ProductException;
 import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.User;
@@ -12,5 +13,5 @@ public interface CartService {
 
     public String addCartItem(Long userId, AddItemRequest request) throws ProductException;
 
-    public Cart findUserCart(Long userId);
+    public Cart findUserCart(Long userId) throws CartException;
 }

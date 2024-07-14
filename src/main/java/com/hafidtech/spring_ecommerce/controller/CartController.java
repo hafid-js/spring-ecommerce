@@ -1,5 +1,6 @@
 package com.hafidtech.spring_ecommerce.controller;
 
+import com.hafidtech.spring_ecommerce.exception.CartException;
 import com.hafidtech.spring_ecommerce.exception.ProductException;
 import com.hafidtech.spring_ecommerce.exception.UserException;
 import com.hafidtech.spring_ecommerce.model.Cart;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/cart")
@@ -28,13 +30,13 @@ public class CartController {
 
     @GetMapping("/")
     @Operation(description = "find cart by user id")
-    public ResponseEntity<Cart> findUserCart(@RequestHeader("Authorization") String jwt) throws UserException {
+    public ResponseEntity<Cart> findUserCart(@RequestHeader("Authorization") String jwt) throws UserException, CartException {
+
         User user = userService.findUserProfileByJwt(jwt);
         Cart cart = cartService.findUserCart(user.getId());
-        System.out.println(cart);
-
 
         return new ResponseEntity<>(cart, HttpStatus.OK);
+
     }
 
     @PostMapping("/add")

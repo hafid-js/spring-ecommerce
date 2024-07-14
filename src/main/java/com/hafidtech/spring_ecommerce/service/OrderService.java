@@ -1,5 +1,6 @@
 package com.hafidtech.spring_ecommerce.service;
 
+import com.hafidtech.spring_ecommerce.exception.CartException;
 import com.hafidtech.spring_ecommerce.exception.OrderException;
 import com.hafidtech.spring_ecommerce.model.Address;
 import com.hafidtech.spring_ecommerce.model.Order;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    public Order createOrder(User user, Address shippingAddress);
+    public Order createOrder(User user, Address shippingAddress) throws CartException;
 
     public Order findOrderById(Long orderId) throws OrderException;
 

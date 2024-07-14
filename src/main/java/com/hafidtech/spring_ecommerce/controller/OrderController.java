@@ -1,10 +1,14 @@
 package com.hafidtech.spring_ecommerce.controller;
 
+import com.hafidtech.spring_ecommerce.exception.CartException;
 import com.hafidtech.spring_ecommerce.exception.OrderException;
 import com.hafidtech.spring_ecommerce.exception.UserException;
 import com.hafidtech.spring_ecommerce.model.Address;
+import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.Order;
 import com.hafidtech.spring_ecommerce.model.User;
+import com.hafidtech.spring_ecommerce.repository.CartRepository;
+import com.hafidtech.spring_ecommerce.service.CartService;
 import com.hafidtech.spring_ecommerce.service.OrderService;
 import com.hafidtech.spring_ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +28,16 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CartService cartService;
+
     @PostMapping("/")
     public ResponseEntity<Order> createOrder(@RequestBody Address shippingAddress,
-                                             @RequestHeader("Authorization") String jwt) throws UserException {
+                                             @RequestHeader("Authorization") String jwt) throws UserException, CartException {
 
         User user = userService.findUserProfileByJwt(jwt);
-
-        Order order = orderService.createOrder(user, shippingAddress);
-
-        System.out.println("order"+ order);
-        return new ResponseEntity<Order>(order, HttpStatus.CREATED);
+            Order order = orderService.createOrder(user, shippingAddress);
+            return new ResponseEntity<Order>(order, HttpStatus.CREATED);
     }
 
     @GetMapping("/user")
