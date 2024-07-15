@@ -22,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CartRepository cartRepository;
     @Autowired
+    private CartItemRepository cartItemRepository;
+    @Autowired
     private CartService cartService;
     @Autowired
     private ProductService productService;
@@ -75,6 +77,7 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(createdOrder);
 
         Cart resetCart = new Cart();
+        resetCart.setId(cart.getId());
         resetCart.setDiscount(0);
         resetCart.setTotalDiscountedPrice(0);
         resetCart.setTotalItem(0);
@@ -82,6 +85,8 @@ public class OrderServiceImpl implements OrderService {
         resetCart.setUser(cart.getUser());
 
         cartRepository.save(resetCart);
+        cartItemRepository.deleteByCartId(cart.getId());
+
 
         for (OrderItem item:orderItems) {
             item.setOrder(savedOrder);

@@ -6,6 +6,7 @@ import com.hafidtech.spring_ecommerce.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
@@ -16,4 +17,7 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
                                     @Param("userId") Long userId);
 
 
+//    @Query("DELETE From CartItem c Where c.cart.id=:cartId")
+    @Transactional
+    Long deleteByCartId(Long cartId);
 }
