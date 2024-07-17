@@ -1,7 +1,6 @@
 package com.hafidtech.spring_ecommerce.service.impl;
 
 import com.hafidtech.spring_ecommerce.exception.CartException;
-import com.hafidtech.spring_ecommerce.exception.CartItemException;
 import com.hafidtech.spring_ecommerce.exception.OrderException;
 import com.hafidtech.spring_ecommerce.model.*;
 import com.hafidtech.spring_ecommerce.repository.*;

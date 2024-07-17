@@ -1,7 +1,6 @@
 package com.hafidtech.spring_ecommerce.service.impl;
 
 import com.hafidtech.spring_ecommerce.exception.CartException;
-import com.hafidtech.spring_ecommerce.exception.CartItemException;
 import com.hafidtech.spring_ecommerce.exception.ProductException;
 import com.hafidtech.spring_ecommerce.model.Cart;
 import com.hafidtech.spring_ecommerce.model.CartItem;
@@ -10,13 +9,11 @@ import com.hafidtech.spring_ecommerce.model.User;
 import com.hafidtech.spring_ecommerce.repository.CartItemRepository;
 import com.hafidtech.spring_ecommerce.repository.CartRepository;
 import com.hafidtech.spring_ecommerce.request.AddItemRequest;
-import com.hafidtech.spring_ecommerce.response.ApiResponse;
 import com.hafidtech.spring_ecommerce.service.CartItemService;
 import com.hafidtech.spring_ecommerce.service.CartService;
 import com.hafidtech.spring_ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
